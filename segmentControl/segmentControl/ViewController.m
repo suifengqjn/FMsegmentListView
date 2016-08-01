@@ -1,13 +1,25 @@
-# FMsegmentListView
-类似今日头条通过3个view循环利用实现多个控制器无线滚动的效果
+//
+//  ViewController.m
+//  segmentControl
+//
+//  Created by qianjn on 16/8/1.
+//  Copyright © 2016年 SF. All rights reserved.
+//
 
+#import "ViewController.h"
+#import "FMsegmentListView.h"
+#define kScreenHeight ([UIScreen mainScreen].bounds.size.height)
+#define kScreenWidth ([UIScreen mainScreen].bounds.size.width)
+@interface ViewController ()
 
-![image](https://raw.githubusercontent.com/suifengqjn/demoimages/master/FMSegmentControl/1.png)
+@end
 
-##使用方法：传一个字典进去即可
+@implementation ViewController
 
-```
-UILabel *testLabel1 = [[UILabel alloc] init];
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    UILabel *testLabel1 = [[UILabel alloc] init];
     testLabel1.frame = CGRectMake(20, 100, 200, 20);
     testLabel1.text = @"this is 1 test label";
     testLabel1.textColor = [UIColor redColor];
@@ -57,7 +69,14 @@ UILabel *testLabel1 = [[UILabel alloc] init];
     FMsegmentListView *segmentView = [[FMsegmentListView alloc] initWithFrame:CGRectMake(0, 64, kScreenWidth, kScreenHeight - 64)];
     segmentView.segmentList = arr;
     [self.view addSubview:segmentView];
+    
+    
+}
 
-```
 
+- (void)clickTab:(NSNumber *)index
+{
+    NSLog(@"--%@", index);
+}
 
+@end
