@@ -25,7 +25,7 @@
     BOOL           _isAnimating;
     NSMutableArray *_segmentViews;
     CGFloat        _lastOffsetX;
-    
+    BOOL           _isRight;        //向右滚动
 }
 @end
 
@@ -346,14 +346,22 @@
     _lastOffsetX  = scrollView.contentOffset.x;
 }
 
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
+{
+    if (scrollView.contentOffset.x > _lastOffsetX) { //向右
+        _isRight = YES;
+    } else {    //向左
+        _isRight = NO;
+    }
+}
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     
-    if (scrollView.contentOffset.x > _lastOffsetX) { //向右
+    if (_isRight) { 
         
         _currentIndex = _currentIndex + 1;
-    } else {                                         //向左
+    } else {
         _currentIndex = _currentIndex - 1;
         
     }
